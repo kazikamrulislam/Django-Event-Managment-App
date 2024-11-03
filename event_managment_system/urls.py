@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='homepage'),
     path('event/', include('event.urls')),
+    path('user_accounts/', include("user_accounts.urls")),
 ]

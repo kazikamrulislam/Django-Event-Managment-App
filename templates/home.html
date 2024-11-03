@@ -1,8 +1,15 @@
 {% extends "base.html" %} {% block content %}
-    <a
-    class="nav-link active"
-    aria-current="page"
-    href="{% url 'add_event' %}"
-    >Add Event</a>
-    <h1>Hello</h1>
+    <div style="padding:20px">
+        <a href="{% url 'login' %}"> Login </a>  | <a href="{% url 'logout' %}"> Logout </a> | <h1>You're {{ request.user }}</h1> 
+        <h3>Welcome To The Event List</h3>
+        <p>Click The Butten Below To Add Event</p>
+        <a
+            class="nav-link active"
+            aria-current="page"
+            href="{% url 'add_event' %}"
+        >
+            Add Event
+        </a>
+        
+    </div>
 {% endblock %}

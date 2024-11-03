@@ -2,8 +2,7 @@
 
 {% block content %}
 
-<h1>Login</h1>
-
+<a href="{% url 'homepage' %}"> Home </a> | <a href="{% url 'register' %}"> Register </a>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}

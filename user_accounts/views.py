@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
 
 
 class CustomeUserCreationForm(UserCreationForm):
@@ -21,7 +22,7 @@ def registration(request):
         form = CustomeUserCreationForm(data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect("register")
+            return redirect("account_home")
     else:
         form = CustomeUserCreationForm()
         
@@ -47,6 +48,10 @@ def login_view(request):
     }
     return render(request, "accounts/login.html", context)
 
+@login_required
+def user_profile(request):
+    return render(request, 'accounts/user_profile.html', {'user': request.user})
+
 def user_logout(request):
     logout(request)
-    return redirect("account_home")
+    return redirect("login")

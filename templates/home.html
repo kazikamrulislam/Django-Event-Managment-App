@@ -1,12 +1,21 @@
 {% extends "base.html" %} {% block content %}
     <div style="padding:20px">
-        {% if user.is_authenticated %}
-            <a href="{% url 'logout' %}"> Logout </a> | <a href="{% url 'profile' %}">Profile</a> | 
-        {% else %}
-            <a href="{% url 'login' %}"> Login </a> | <a href="{% url 'register' %}"> Register </a> |
-         {% endif %}
-             <h1>Welcome, {{ request.user }}</h1> 
+        
         <h3>Event List</h3>
+        
+        <ul>
+            {% for event in events %}
+              <li>
+                <h2>{{ event.title }}</h2>
+                <p>{{ event.event_date }}</p>
+                <p>{{ event.category }}</p>
+                <p>{{ event.event_detail }}</p>
+                {% comment %} <a href="{% url 'event_update' event.pk %}">Edit</a> | {% endcomment %}
+                {% comment %} <a href="{% url 'event_delete' event.pk %}">Delete</a> {% endcomment %}
+              </li>
+            {% endfor %}
+        </ul>
+
         <p>Click The Butten Below To Add Event</p>
         <a
             class="nav-link active"
